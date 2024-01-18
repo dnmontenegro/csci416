@@ -1,0 +1,324 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{hyperref}
+
+\title{CS416-23 -- HW1}
+%\author{liqun.wm }
+\date{}
+\setlength\parindent{0pt}
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Introduction}
+
+
+Please complete all exercises and problems below.
+
+\begin{itemize}
+
+\item All the files can be found in 
+
+\begin{verbatim}
+http://www.cs.wm.edu/~liqun/teaching/cs416/hw1/
+\end{verbatim}
+
+\item  You can also copy to your directory on a department machine by:
+
+\begin{verbatim}
+cp ~liqun/public_html/teaching/cs416/hw1/* .
+\end{verbatim}
+\end{itemize}
+
+
+
+{\noindent} Your  submission  consists  of  four  steps:
+\begin{enumerate}
+
+\item  Create hw1.pdf with your solutions to the following problems.  
+The solutions can be typed or written and 
+scanned but the resulting pdf must  be high quality and easily readable.  Put your name in the file.
+
+\item    You’ll need to create or edit these files in the directory hw1. Complete the requested code in these files.
+
+\begin{itemize}
+\item exercise\_1.ipynb
+
+\item gd.py
+
+ 
+\end{itemize}
+
+
+\item Compile your exercise\_1.ipynb into exercise\_1.pdf
+
+\item Submit the following files: 
+
+\begin{verbatim}
+hw1.pdf  exercise_1.pdf  exercise_1.ipynb  gd.py
+\end{verbatim}
+
+%    hw1.pdf exercise_1.ipynb gd.py  
+%    gradient-decent.ipynb multivariate-linear-regression.ipynb
+
+%~jwu21/bin/submit cs416 hw1.pdf exercise_1.ipynb gd.py gradient-descent.ipynb multivariate-linear-regression.ipynb 
+
+\end{enumerate}
+
+%These are designed to test your understanding of basic concepts. I strongly recommend attempting these first on your own.
+
+\section{SVM (5 points + 10 points)}
+
+1. Suppose you are given the following training data 
+
+positive: (1,2,3) (1,1,4) \\
+negative: (3,2,-1) (4,3,-2) (3,5,-3)
+
+Write down the SVM optimization for those training data including the optimization objective and the constraints. 
+
+2. Suppose you are given the following training data 
+
+positive: (1,2) (1,1) (2,1) (0,1)\\
+negative: (3,2) (4,3) (3,5)
+
+Which points are support vectors? What is the decision boundary if you use SVM? In this problem, you can simply look at the points and decide which points are support vectors and then calculate the decision boundary. 
+
+\section{Decision Tree (20 points)}
+
+\begin{comment}
+The following table contains training examples that help predict whether a person is likely to have come kind of disease.
+
+\begin{center}
+\begin{tabular}{ l l l l l l } 
+ID &	PAIN? &	MALE? &	SMOKES? &	WORK OUT? &	DISEASE?\\
+1. &	yes &	yes &	no &	yes &	yes\\
+2. &	yes &	yes &	yes &	no &	yes\\
+3. &	no &	no &	yes &	no &	yes\\
+4. &	no &	yes &	no &	yes &	no\\
+5. &	yes &	no &	yes &	yes &	yes\\
+6. &	no &	yes &	yes &	yes &	no
+\end{tabular}
+\end{center}
+
+Use information gain (entropy) to construct a minimal decision tree that predicts whether or not someone is likely to have this disease. Show your computation in each step. Write down your decision tree as a number of decision rules.
+\end{comment}
+
+
+Consider the following dataset consisting of five training examples followed by three test examples:
+\begin{center}
+\begin{tabular}{ c c c c }
+x1 & x2 & x3 & y\\
+- & + & + & -\\
++ & + & + & +\\
+- & + & - & +\\
+- & - & + & -\\
++ & + & - & +\\
+\hline \\
++ & - & - & ?\\
+- & - & - & ?\\
++ & - & + & ?\\
+\end{tabular}
+\end{center}
+
+
+
+There are three attributes (or features or dimensions), x1, x2 and x3, taking the values +  and -. The label (or class) is given in the last column denoted y; it also takes the two values + and -. 
+
+Simulate each of the following learning algorithms on this dataset. In each case, show the final hypothesis that is induced, and show how it was computed. Also, say what its prediction would be on the three test examples.
+
+\begin{itemize}
+\item  The decision tree algorithm discussed in class. For this algorithm, use the information gain (entropy) impurity measure as a criterion for choosing an attribute to split on. Grow your tree until all nodes are pure, but do not attempt to prune the tree.
+
+\item AdaBoost. For this algorithm, you should interpret label values of + and - as the real numbers +1 and -1. Use decision stumps as weak hypotheses, and assume that the weak learner always computes the decision stump with minimum error on the training set weighted in AdaBoost algorithm. Note that a decision stump is a one-level decision tree. Run your boosting algorithm for three rounds and list the intermediate results.
+\end{itemize}
+
+
+\section{Naive Bayes (10 points)}
+
+The following table contains training examples that help predict whether a person is likely to have come kind of disease.
+
+\begin{center}
+\begin{tabular}{ l l l l l l } 
+ID &	PAIN? &	MALE? &	SMOKES? &	WORK OUT? &	DISEASE?\\
+1. &	yes &	yes &	no &	yes &	yes\\
+2. &	yes &	yes &	yes &	no &	yes\\
+3. &	no &	no &	yes &	no &	yes\\
+4. &	no &	yes &	no &	yes &	no\\
+5. &	yes &	no &	yes &	yes &	yes\\
+6. &	no &	yes &	yes &	yes &	no\\
+7. &	no &	yes &	yes &	no &	?\\
+\end{tabular}
+\end{center}
+
+Use Naive Bayes method to predict whether the last person will have the disease. Be sure to use Laplace smoothing. Show the steps for your calculation.  
+
+
+\section{Partial Derivatives}
+
+Consider the following functions of the variables $u$, $v$, and $w$. Assume the variables $x$, $y$, $x^{(i)}$ and $y^{(i)}$ are {\bf constants}: they represent numbers that will not change during the execution of a machine learning algorithm (e.g., the training data). Consider the $\log $ as natural logarithm of base $e$.
+(2 points for each problem)
+
+$$f(u,v)=8u^2 v^4 +4v^3 +6u$$
+
+$$g(u,v,w)=x\log(u) +yuvw^3+13x^3 $$
+
+$$h(u,v)=\sum_{i=1}^m \frac{1}{2} (x^{(i)}u + y^{(i)}v)^2$$
+
+{\noindent} Write the following partial derivatives:
+
+\begin{enumerate}
+    \item $\frac{\partial}{\partial u} f(u,v)$
+    \item $\frac{\partial}{\partial v} f(u,v)$
+    \item $\frac{\partial}{\partial u} g(u,v,w)$
+     \item $\frac{\partial}{\partial v} g(u,v,w)$                 
+     \item $\frac{\partial}{\partial w} g(u,v,w)$
+    \item $\frac{\partial}{\partial u} h(u,v)$
+    \item $\frac{\partial}{\partial v} h(u,v)$
+     
+\end{enumerate}
+
+
+\section{Partial Derivative Intuition}
+
+Consider the following contour plot of a function $f(u,v)$:
+
+\includegraphics[width=1\textwidth, angle=0]{hw1-contour.pdf}
+
+{\noindent} For each of the following partial derivatives, state whether it is positive, negative, or equal to zero. Briefly explain. These questions can be answered from the contour plot without knowing the formula for the function. (2 points for each problem)
+
+{\noindent} ({\bf Note}: for two numbers $a$ and $b$ we will use the notation $\frac{\partial}{\partial u}f(a,b)$ to mean "the partial derivative of $f(u,v)$ with respect to $u$ at the point where $u=a$ and $v=b$". This notation is succinct but obfuscates the original variable names. A more explicit way to write the same thing is 
+$\frac{\partial}{\partial u}f(u,v)|_{u=a,v=b}$
+)
+
+\begin{enumerate}
+    \item $\frac{\partial}{\partial u} f(-2,-2)$
+    \item $\frac{\partial}{\partial v} f(-2,-2)$
+     \item $\frac{\partial}{\partial u} f(3,-3)$
+     \item $\frac{\partial}{\partial v} f(3,-3)$
+     \item To the nearest integer, estimate the values of $u$ and $v$ that minimize $f(u,v)$.
+\end{enumerate}
+
+
+\section{Matrix Manipulation I}
+
+%The purpose of these exercises is to practice manipulating matrices and vectors in Python and the basics of matrix multiplication, matrix-vector multiplication, and algebraic rules using matrices and vectors. These are foundational skills for developing machine learning algorithms.
+Matrix multiplication practice (2 points each for the first 5 problems and 5 points for the last problem).
+
+\begin{enumerate}
+\item Write the result of the following matrix-matrix multiplication. Your answer should be written in terms of $u,v,a$ and $b$.
+
+$$\begin{bmatrix}
+3 & -1 \\
+2 & 5 \\
+-2 & 2
+\end{bmatrix} \cdot \begin{bmatrix}
+u & a \\
+v & b
+\end{bmatrix}
+$$
+
+\item Suppose $A\in \mathbb{R}^{2\times 2}$, $B\in \mathbb{R}^{2\times 4}$. Does the product $AB$ exist? If so, what size is it?
+
+\item Suppose $A\in \mathbb{R}^{3\times 5}$, $B\in \mathbb{R}^{4\times 1}$. Does the product $AB$ exist? If so, what size is it?
+
+\item Suppose $A\in \mathbb{R}^{3\times 2}$, $y\in \mathbb{R}^{3}$. Is $y^T A$ a row vector or a column vector?
+
+\item Suppose $A\in \mathbb{R}^{3\times 2}$, $x\in \mathbb{R}^{2}$. Is $Ax$ a row vector or a column vector?
+
+\item Suppose $(Bx+y)^T A^T=0$, where $A$ and $B$ are both invertible $n\times n$ matrices, $x$ and $y$ are vectors in $\mathbb{R}^n$, and $0$ is a vector of all zeros. Use the properties of multiplication, transpose, and inverse to show that $x=-B^{-1}y$. Show your work.
+
+\end{enumerate}
+
+
+
+\section{Matrix Manipulation II}
+(10 points) Create a jupyter notebook called {\bf exercise\_1.ipynb} and write code to do the following.
+
+\begin{enumerate}
+    \item Enter the following matrices and vectors 
+
+    $$
+    A=\begin{bmatrix}
+-2 & -3 \\
+1 & 0
+\end{bmatrix}, B= \begin{bmatrix}
+1 & 1 \\
+1 & 0
+\end{bmatrix}, x= \begin{bmatrix}
+-1 \\
+1
+\end{bmatrix}
+    $$
+    
+\item Compute $C=A^{-1}$
+\item Check that $AC=I$ and $CA=I$
+\item Compute $Ax$
+\item Compute $A^T A$
+\item Compute $Ax-Bx$
+\item Compute $||x||$ (use the dot product)
+\item Compute $||Ax-Bx||$
+\item Print the first column of $A$ (do not use a loop -- use array "slicing" instead)
+\item Assign the vector $x$ to the first column of $B$ (do not use a loop -- use "array slicing" instead)
+\item Compute the element-wise product between the first column of $A$ and the second column of $A$
+\end{enumerate}
+
+\section{Linear Regression}
+
+The problems consider linear regression based on  
+%Suppose you are asked to do linear regression with
+the following hypothesis and function. (10 points each)
+
+$$h_{\theta} (x)=\theta_0 +\theta_1 x, 
+J(\theta_0, \theta_1)=\frac{1}{2} \sum_{i=1}^m (h_{\theta} (x^{(i)}) - y^{(i)})^2
+$$
+
+{\noindent} Consider the following small data set:
+
+\begin{center}
+\begin{tabular}{ c c }
+x & y\\
+ \hline
+ 2  & 5 \\
+ -1 & -1 \\
+ 1 & 3
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item Solve for the values of $\theta_0$ and $\theta_1$ that minimize the cost function by substituting the value from the training set into the cost function, setting the derivatives (with respect to both $\theta_0$ and $\theta_1$) equal to zero, and solving  the system of two equations for $\theta_0$ and $\theta_1$. Show your work. 
+
+%\item  Now do the same thing, but do not substitute the values of the training set into the cost function. Instead. leave the $x^{(i)}$ and  $y^{(i)}$ variables, take the derivatives with respect to both $\theta_0$ and $\theta_1$, set them equal to zero, and solve for $\theta_0$ and $\theta_1$. This will give you a general expression for $\theta_0$ and $\theta_1$ in terms of the training data. 
+
+%Check your answer by plugging in the training data from the previous problem into your expression for $\theta_0$ and $\theta_1$. You should get the same values for $\theta_0$ and $\theta_1$ that you got in that problem. 
+
+\item In this problem you will implement gradient descent for linear regression. Open the notebook {\bf gradient-descent.ipynb} in Jupyter and follow the instructions to complete the problem.
+
+
+%P (0 points) How much time did you spend on this homework?
+
+\end{enumerate}
+
+
+\section{Polynomial Regression}
+
+(30 points) In this problem you will implement methods for multivariate linear regression and use them to solve a polynomial regression problem. The purpose of this problem is:
+
+\begin{enumerate}
+\item  To practice writing “vectorized” versions of algorithms in Python
+
+\item  To understand how feature expansion can be used to fit non-linear hypotheses using linear methods
+
+\item  To understand feature normalization and its impact on numerical optimization for machine learning. Open the notebook {\bf multivariate-linear-regression.ipynb} and follow the instructions to complete the problem.
+\end{enumerate}
+
+
+\end{document}
